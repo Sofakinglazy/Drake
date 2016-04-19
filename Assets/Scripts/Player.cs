@@ -92,9 +92,13 @@ public class Player : MonoBehaviour {
 		died = true;
 		Application.LoadLevel (Application.loadedLevel);
 	}
-
+		
 	public void Damage(int dmg){
 		curHealth -= dmg;
+	}
+
+	void OnLevelWasLoad(int thisLevel){
+		transform.position = GameObject.FindGameObjectWithTag ("Respawn").transform.position;
 	}
 
 }
