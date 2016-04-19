@@ -13,11 +13,13 @@ public class SimpleEnemy : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	private Animator anim;
 	public LayerMask Dectectwhat;
+	private Player player;
 
 	// Use this for initialization
 	void Start () {
 		rb2d = gameObject.GetComponent<Rigidbody2D> ();
 		anim = gameObject.GetComponent<Animator> ();
+		player = gameObject.GetComponent<Player> ();
 	
 	}
 	

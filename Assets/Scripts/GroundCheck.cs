@@ -5,7 +5,7 @@ public class GroundCheck : MonoBehaviour {
 
 	private Player player;
 	void Start(){
-		player = gameObject.GetComponentInParent<Player> ();
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
