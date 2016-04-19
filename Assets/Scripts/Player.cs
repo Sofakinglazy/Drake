@@ -93,4 +93,8 @@ public class Player : MonoBehaviour {
 		Application.LoadLevel (Application.loadedLevel);
 	}
 
+	void OnLevelWasLoad(int thisLevel){
+		transform.position = GameObject.FindGameObjectWithTag ("Respawn").transform.position;
+	}
+
 }
