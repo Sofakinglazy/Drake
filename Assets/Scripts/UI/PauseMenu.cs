@@ -1,42 +1,59 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
-	public GameObject PauseUI;
-	private bool paused = false;
+	public GameObject PauseMenuObject;
+	public Button resumeButton;
+	public Button restartButton;
+	public Button quitButton;
 
-	void Start(){
-		PauseUI.SetActive (false);
+	private static PauseMenu pauseMenu;
+
+	public static PauseMenu instance (){
+		if (!pauseMenu) {
+			pauseMenu = FindObjectOfType (typeof(PauseMenu)) as PauseMenu;
+			if (!pauseMenu) {
+				Debug.LogError ("Cannot find the pause menu!");
+			}
+		}
+		return pauseMenu;
 	}
 
-	void Update(){
-		if (Input.GetButtonDown ("Pause")) {
-			paused = !paused;
-		}
+	public void Pause(){
+		PauseMenuObject.SetActive (true);
+		Time.timeScale = 0;
 
-		if (paused) {
-			PauseUI.SetActive (true);
-			Time.timeScale = 0;
-		}
+		resumeButton.onClick.RemoveAllListeners ();
+		resumeButton.onClick.AddListener (Resume);
+		resumeButton.onClick.AddListener (CloseMenu);
 
-		if (!paused) {
-			PauseUI.SetActive (false);
-			Time.timeScale = 1;
-		}
+		restartButton.onClick.RemoveAllListeners ();
+		restartButton.onClick.AddListener (Restart);
+		restartButton.onClick.AddListener (CloseMenu);
+
+		quitButton.onClick.RemoveAllListeners ();
+		quitButton.onClick.AddListener (Quit);
+		quitButton.onClick.AddListener (CloseMenu);
 	}
 
-	public void Resume(){
-		paused = false;
+	void Resume(){
 	}
 
-	public void Quit(){
+	void Quit(){
 		Application.Quit ();
 	}
 
-	public void Restart(){
+	void Restart(){
 		Application.LoadLevel (Application.loadedLevel);
+	}
+
+	void CloseMenu(){
+		PauseMenuObject.SetActive (false);
+		Time.timeScale = 1;
 	}
 
 

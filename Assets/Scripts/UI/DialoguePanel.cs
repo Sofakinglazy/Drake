@@ -17,7 +17,7 @@ public class DialoguePanel : MonoBehaviour {
 		if (!dialoguePanel) {
 			dialoguePanel = FindObjectOfType (typeof (DialoguePanel)) as DialoguePanel;
 			if (!dialoguePanel) {
-				Debug.LogError ("Cannot find the dialogue panel.");
+				Debug.LogError ("Cannot find the dialogue panel!");
 			}
 		}
 		return dialoguePanel;
@@ -25,6 +25,7 @@ public class DialoguePanel : MonoBehaviour {
 
 	public void Choice (string conversation, UnityAction yesEvent, UnityAction noEvent){
 		dialoguePanelObject.SetActive (true);
+		Time.timeScale = 0;
 
 		yesButton.onClick.RemoveAllListeners ();
 		yesButton.onClick.AddListener (yesEvent);
@@ -44,5 +45,6 @@ public class DialoguePanel : MonoBehaviour {
 
 	void ClosePanel(){
 		dialoguePanelObject.SetActive (false);
+		Time.timeScale = 1;
 	}
 }

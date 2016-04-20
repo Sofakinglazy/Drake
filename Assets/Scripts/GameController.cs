@@ -6,10 +6,18 @@ public class GameController : MonoBehaviour {
 	public GameObject player;
 	public GameObject camera;
 	public Transform spawnPoint;
+	private PauseMenu pauseMenu;
 
 	void Start(){
 		SpawnPlayer ();
 		InstantiateCamera ();
+		pauseMenu = PauseMenu.instance ();
+	}
+
+	void Update (){
+		if (Input.GetButtonDown ("Pause")) {
+			pauseMenu.Pause ();
+		}
 	}
 
 	void SpawnPlayer(){
