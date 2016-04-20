@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	public bool grounded;
 	public bool died;
 	public bool canDoubleJump;
-
+	public bool attack;
 
 	private Rigidbody2D rb2d;
 
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour {
 		anim = gameObject.GetComponent<Animator> ();
 		curHealth = maxHealth;
 		died = false;
+		attack = false;
 		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<GameMaster> ();
 	
 	}
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour {
 		anim.SetBool ("Grounded", grounded);
 		anim.SetFloat ("Speed", Mathf.Abs(rb2d.velocity.x));
 		anim.SetBool ("Died", died);
+		anim.SetBool ("Attack", attack);
 		if (Input.GetAxis ("Horizontal") < -0.1f) {
 			transform.localScale = new Vector3 (1, 1, 1);
 		}

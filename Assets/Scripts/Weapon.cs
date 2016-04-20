@@ -5,11 +5,12 @@ public class Weapon : MonoBehaviour {
 
 	public float fireRate=0;
 	public float damage=0;
-	float timeToFire = 0;
+//	float timeToFire = 0;
 	public Transform firePoint;
 	private Player player;
 	public GameObject bullet;
 	public float nextfire;
+	private bool shooted=false;
 
 	void Awake (){
 		firePoint = transform.FindChild ("FirePoint");
@@ -24,10 +25,22 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-			if (Input.GetKeyDown (KeyCode.Q)&&Time.time>nextfire) {
+		if (Input.GetKeyDown (KeyCode.Q) && Time.time > nextfire) {
 			nextfire = Time.time + fireRate;	
-			  Shoot ();
-			}
+
+			shooted = true;
+			player.attack = true;
+			Shoot ();
+		} 
+		if(shooted && Time.time<nextfire){
+			player.attack=true;
+		}else{
+			player.attack=false;
+		}
+			
+			
+
+
 		
 	
 	}
@@ -38,7 +51,10 @@ public class Weapon : MonoBehaviour {
 //		Vector2 direction = new Vector2 (player.transform.localScale.x,player.transform.localScale.y);
 //		bulletClone = Instantiate (bullet, firePoint.position, firePoint.rotation);
 //		bulletClone.GetComponent<Rigidbody2D> ().velocity = direction * 20;
-		Instantiate(bullet,firePoint.position,firePoint.rotation);
+
+
+		Instantiate(bullet,firePoint.position ,firePoint.rotation);
+
 
 
 	}
