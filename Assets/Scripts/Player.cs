@@ -114,6 +114,8 @@ public class Player : MonoBehaviour {
 
 [System.Serializable]
 public class Boundary{
-	public int xMin = -33;
-	public int xMax = 33;
+	public float xMin;
+	public float xMax;
+	public float yMin;
+	public float yMax;
 }
