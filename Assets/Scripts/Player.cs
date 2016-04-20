@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 	public bool died;
 	public bool canDoubleJump;
 
+
 	private Rigidbody2D rb2d;
 
 	public int curHealth;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour {
 	public bool knockfromRight;
 
 	private Animator anim;
+	private GameMaster gm;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour {
 		anim = gameObject.GetComponent<Animator> ();
 		curHealth = maxHealth;
 		died = false;
+		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<GameMaster> ();
 	
 	}
 	
@@ -129,6 +132,14 @@ public class Player : MonoBehaviour {
 	void OnLevelWasLoad(int thisLevel){
 		transform.position = GameObject.FindGameObjectWithTag ("Respawn").transform.position;
 	}
+
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.CompareTag ("Coin")) {
+			Destroy (col.gameObject);
+			gm.points += 1;
+		}
+	}
+
 
 //	public IEnumerator Knockback(float knockDur,float knockbackPwr, Vector3 knockbackDir){
 //		float timer = 0;
