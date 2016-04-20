@@ -21,7 +21,7 @@ public class AttackCheck : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D col){
 		if (col.CompareTag ("Player")) {
 				player.Damage (1);
-			Knight.velocity = 0;
+//			Knight.velocity = 0;
 			Knight.anim.SetBool ("Attack", true);
 //			StartCoroutine (player.Knockback (0.05f,500,player.transform.position));
 			player.knockbackCount=player.knockbackLength;
@@ -37,7 +37,7 @@ public class AttackCheck : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D col){
-		Knight.velocity = v;
+//		Knight.velocity = v;
 		Knight.anim.SetBool ("Attack", false);
 	}
 
