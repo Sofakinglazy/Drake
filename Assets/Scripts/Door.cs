@@ -4,6 +4,7 @@ using System.Collections;
 public class Door : MonoBehaviour {
 
 	private bool enter; 
+	public TestDialogue test;
 
 	void Start (){
 		enter = false;
@@ -11,7 +12,8 @@ public class Door : MonoBehaviour {
 
 	void Update (){
 		if (enter == true && Input.GetKeyDown (KeyCode.UpArrow)) {
-			Application.LoadLevel("Scene1");
+			test.TestCYS ();
+//			Application.LoadLevel("Scene1");
 		}
 	}
 
