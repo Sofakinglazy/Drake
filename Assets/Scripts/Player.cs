@@ -10,12 +10,19 @@ public class Player : MonoBehaviour {
 	public bool grounded;
 	public bool died;
 	public bool canDoubleJump;
+
 	private Rigidbody2D rb2d;
 
 	public int curHealth;
 	public int maxHealth = 100;
 
 	public Boundary boundary;
+
+	public float knockback;
+	public float knockbackLength;
+	public float knockbackCount;
+	public bool knockfromRight;
+
 	private Animator anim;
 
 	// Use this for initialization
@@ -65,6 +72,19 @@ public class Player : MonoBehaviour {
 		if (curHealth <= 0) {
 			Die ();
 		}
+
+		if (knockbackCount <= 0) {
+			rb2d.velocity = new Vector2 (rb2d.velocity.x, rb2d.velocity.y);
+		} else {
+			if (knockfromRight) {
+				rb2d.velocity = new Vector2 (-knockback,knockback);
+			}
+			if (!knockfromRight) {
+				rb2d.velocity = new Vector2 (knockback,knockback);
+			}
+			knockbackCount -= Time.deltaTime;
+		}
+
 	
 	}
 
@@ -99,7 +119,7 @@ public class Player : MonoBehaviour {
 
 	void Die(){
 		died = true;
-		Application.LoadLevel (Application.loadedLevel);
+		Application.LoadLevel ("Scene1");
 	}
 		
 	public void Damage(int dmg){
@@ -109,6 +129,17 @@ public class Player : MonoBehaviour {
 	void OnLevelWasLoad(int thisLevel){
 		transform.position = GameObject.FindGameObjectWithTag ("Respawn").transform.position;
 	}
+
+//	public IEnumerator Knockback(float knockDur,float knockbackPwr, Vector3 knockbackDir){
+//		float timer = 0;
+//		while (knockDur > timer) {
+//			timer += Time.deltaTime;
+//			rb2d.AddForce (Vector2.up * knockbackPwr);
+//			rb2d.AddForce (new Vector3 (knockbackDir.x * -500, knockbackDir.y * knockbackPwr, transform.position.z));
+//		}
+//		yield return 0;
+//
+//	}
 
 }
 
