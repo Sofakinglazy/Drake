@@ -12,7 +12,6 @@ public class Door : MonoBehaviour {
 	void Update (){
 		if (enter == true && Input.GetKeyDown (KeyCode.UpArrow)) {
 			Application.LoadLevel("Scene1");
-			Debug.Log("Should be in scene1");
 		}
 	}
 
@@ -20,7 +19,13 @@ public class Door : MonoBehaviour {
 		if (other.gameObject.tag == "Player") {
 			DontDestroyOnLoad (other.gameObject);
 			enter = true;
-			Debug.Log ("Player stands at the door.");
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other){
+		if (other.gameObject.tag == "Player") {
+			DontDestroyOnLoad (other.gameObject);
+			enter = false;
 		}
 	}
 }

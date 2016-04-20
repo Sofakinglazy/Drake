@@ -15,7 +15,9 @@ public class Player : MonoBehaviour {
 	public int curHealth;
 	public int maxHealth = 100;
 
+	public Boundary boundary;
 	private Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		rb2d = gameObject.GetComponent<Rigidbody2D> ();
@@ -86,6 +88,13 @@ public class Player : MonoBehaviour {
 		if (rb2d.velocity.x < -maxSpeed) {
 			rb2d.velocity = new Vector2(-maxSpeed,rb2d.velocity.y);
 		}
+
+		rb2d.position = new Vector3
+			(
+				Mathf.Clamp(rb2d.position.x, boundary.xMin, boundary.xMax),
+				rb2d.position.y,
+				0.0f
+			);
 	}
 
 	void Die(){
@@ -101,4 +110,10 @@ public class Player : MonoBehaviour {
 		transform.position = GameObject.FindGameObjectWithTag ("Respawn").transform.position;
 	}
 
+}
+
+[System.Serializable]
+public class Boundary{
+	public int xMin = -33;
+	public int xMax = 33;
 }
