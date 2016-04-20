@@ -30,9 +30,11 @@ public class PauseMenu : MonoBehaviour {
 	public void Resume(){
 		paused = false;
 	}
+
 	public void Quit(){
 		Application.Quit ();
 	}
+
 	public void Restart(){
 		Application.LoadLevel (Application.loadedLevel);
 	}
