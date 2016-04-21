@@ -18,7 +18,7 @@ public class TestDialogue : MonoBehaviour {
 	}
 
 	public void TestCYS(){
-		dialogue.Choice ("Would you go to heaven?\n OR go to hell?", myYesAction, myNoAction);
+//		dialogue.Choice ("Would you go to heaven?\n OR go to hell?", myYesAction, myNoAction);
 	}
 
 	void TestYesAction (){

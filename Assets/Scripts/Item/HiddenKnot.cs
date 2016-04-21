@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 public class HiddenKnot : MonoBehaviour {
 
-	public GameObject playerIcon;
-	public GameObject npcIcon;
+	public GameObject[] icons;
 
 	private bool spaceAccepted;
 	private bool inConveration;
@@ -17,8 +16,7 @@ public class HiddenKnot : MonoBehaviour {
 		spaceAccepted = false;
 		inConveration = false;
 		dialogue = DialoguePanel.instance ();
-		conversations = new string[4];
-		AssignText ();
+		conversations = TextManager.text1;
 	}
 
 	void Update (){
@@ -34,7 +32,15 @@ public class HiddenKnot : MonoBehaviour {
 			inConveration = true;
 			StartCoroutine (Talk());
 		}
-	}	
+	}
+
+	void FindGold(){
+		Application.LoadLevel (1);
+	}
+
+	void FightKnights(){
+		Application.LoadLevel (2);
+	}
 
 	void eatPrincess(){
 		Debug.Log("Eat princess!");
@@ -44,20 +50,22 @@ public class HiddenKnot : MonoBehaviour {
 		Debug.Log("Buy apple!");
 	}
 
-	void AssignText(){
-		conversations[0] = "Please don't eat me. \n I can sell you something.";
-		conversations[1] = "What are you going to give me?";
-		conversations[2] = "I can give you some apples.";
-		conversations[3] = "Should I accept apples?";
-	}
+//	void AssignText(){
+//		conversations[0] = "Please don't eat me. \n I can sell you something.";
+//		conversations[1] = "What are you going to give me?";
+//		conversations[2] = "I can give you some apples.";
+//		conversations[3] = "Should I accept apples?";
+//	}
 
 	IEnumerator Talk (){
 		for (int i = 0; i < conversations.Length - 1; i++) {
-			dialogue.Speak (conversations[i]);
+			int nIcon = i % icons.Length;
+			dialogue.Speak (icons[nIcon], conversations[i]);
 			yield return new WaitUntil(() => spaceAccepted);
 			spaceAccepted = false;
 		}
-		dialogue.Choice (conversations[3], eatPrincess, buyApple);
+		int lastIcon = (conversations.Length - 1) % icons.Length;
+		dialogue.Choice (icons[lastIcon], conversations[conversations.Length - 1], eatPrincess, buyApple);
 		inConveration = false;
 		yield return new WaitUntil(() => spaceAccepted);
 	}
