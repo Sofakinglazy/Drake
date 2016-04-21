@@ -65,7 +65,7 @@ public class HiddenKnot : MonoBehaviour {
 			spaceAccepted = false;
 		}
 		int lastIcon = (conversations.Length - 1) % icons.Length;
-		dialogue.Choice (icons[lastIcon], conversations[conversations.Length - 1], eatPrincess, buyApple);
+		dialogue.Choice (icons[lastIcon], conversations[conversations.Length - 1], FightKnights, FindGold);
 		inConveration = false;
 		yield return new WaitUntil(() => spaceAccepted);
 	}
