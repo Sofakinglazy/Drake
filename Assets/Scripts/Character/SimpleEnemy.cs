@@ -25,7 +25,7 @@ public class SimpleEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		rb2d.velocity = new Vector2 (-velocity, rb2d.velocity.y);
+		rb2d.velocity = new Vector2 (velocity*gameObject.transform.localScale.x*-1, rb2d.velocity.y);
 //		colliding = Physics2D.Linecast (sightStart.position, sightEnd.position);
 //		attack = Physics2D.Linecast (AttackStart.position, AttackEnd.position);
 //		if (colliding) {
