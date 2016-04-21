@@ -90,7 +90,23 @@ public class Player : MonoBehaviour {
 			knockbackCount -= Time.deltaTime;
 		}
 
+		if (Application.loadedLevel == 0) {
+			boundary.xMax = 33f;
+			boundary.xMin = -33f;
+		} else if (Application.loadedLevel == 1) {
+			boundary.xMax = 91f;
+			boundary.xMin = -91f;
+		}
+		else if (Application.loadedLevel == 2) {
+			boundary.xMax = 17.5f;
+			boundary.xMin = -54f;
+		}
+		else if (Application.loadedLevel == 3) {
+			boundary.xMax = 19.2f;
+			boundary.xMin = -19.2f;
+		}
 	
+
 	}
 
 	void FixedUpdate(){
