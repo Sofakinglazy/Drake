@@ -124,7 +124,7 @@ public class Player : MonoBehaviour {
 
 	void Die(){
 		died = true;
-		Application.LoadLevel ("Scene1");
+		Application.LoadLevel ("SScene1");
 	}
 		
 	public void Damage(int dmg){
@@ -139,8 +139,11 @@ public class Player : MonoBehaviour {
 		if (col.CompareTag ("Coin")) {
 			Destroy (col.gameObject);
 			gm.points += 1;
+
 		}
 	}
+
+
 
 
 //	public IEnumerator Knockback(float knockDur,float knockbackPwr, Vector3 knockbackDir){
