@@ -7,9 +7,12 @@ public class AttackCheck : MonoBehaviour {
 	private SimpleEnemy Knight;
 	private float v;
 	void Start(){
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
+//		 player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 		Knight =  GameObject.FindGameObjectWithTag ("Knight").GetComponent<SimpleEnemy> ();
 		v = Knight.velocity;
+	}
+	void Update(){
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 	}
 
 //	void OnTriggerEnter2D(Collider2D col){
