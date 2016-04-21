@@ -50,7 +50,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetAxis ("Horizontal") > 0.1f) {
 			transform.localScale = new Vector3 (-1, 1, 1);
 		}
-		if (Input.GetButtonDown ("Jump")) {
+		if (Input.GetButtonDown ("Jump") && Time.timeScale != 0) {
 			if (grounded) {
 				rb2d.AddForce (Vector2.up * jumppower);
 				canDoubleJump = true;

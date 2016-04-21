@@ -7,6 +7,8 @@ public class DialoguePanel : MonoBehaviour {
 
 	public Text conversation;
 	public GameObject characterIcon;
+//	public GameObject characterIcon1;
+//	public GameObject characterIcon2;
 	public Button yesButton;
 	public Button noButton;
 	public GameObject dialoguePanelObject;
@@ -23,9 +25,33 @@ public class DialoguePanel : MonoBehaviour {
 		return dialoguePanel;
 	}
 
-	public void Choice (string conversation, UnityAction yesEvent, UnityAction noEvent){
+	public void Speak (string conversation){
 		dialoguePanelObject.SetActive (true);
 		Time.timeScale = 0;
+
+		this.conversation.text = conversation;
+
+		this.characterIcon.SetActive (true);
+		yesButton.gameObject.SetActive (false);
+		noButton.gameObject.SetActive (false);
+	}
+
+//	public void Speak (GameObject icon, string conversation){
+//		dialoguePanelObject.SetActive (true);
+//
+//		this.conversation.text = conversation;
+//		this.characterIcon = icon;
+//
+//		this.characterIcon.SetActive (true);
+//		yesButton.gameObject.SetActive (false);
+//		noButton.gameObject.SetActive (false);
+//	}
+
+	public void Choice (string question, UnityAction yesEvent, UnityAction noEvent){
+		dialoguePanelObject.SetActive (true);
+		Time.timeScale = 0;
+
+		this.conversation.text = question;
 
 		yesButton.onClick.RemoveAllListeners ();
 		yesButton.onClick.AddListener (yesEvent);
@@ -35,9 +61,8 @@ public class DialoguePanel : MonoBehaviour {
 		noButton.onClick.AddListener (noEvent);
 		noButton.onClick.AddListener (ClosePanel);
 
-		this.conversation.text = conversation;
 
-		this.characterIcon.SetActive (false);
+		this.characterIcon.SetActive (true);
 		yesButton.gameObject.SetActive (true);
 		noButton.gameObject.SetActive (true);
 
