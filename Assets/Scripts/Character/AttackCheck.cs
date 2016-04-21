@@ -5,11 +5,12 @@ public class AttackCheck : MonoBehaviour {
 
 	private Player player;
 	private SimpleEnemy Knight;
-	private float v;
+//	private float v;
 	void Start(){
 //		 player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
-		Knight =  GameObject.FindGameObjectWithTag ("Knight").GetComponent<SimpleEnemy> ();
-		v = Knight.velocity;
+//		Knight =  GameObject.FindGameObjectWithTag ("Knight").GetComponent<SimpleEnemy> ();
+		Knight=gameObject.GetComponentInParent<SimpleEnemy>();
+//		v = Knight.velocity;
 	}
 	void Update(){
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();

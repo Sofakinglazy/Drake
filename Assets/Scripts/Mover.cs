@@ -26,6 +26,9 @@ public class Mover : MonoBehaviour {
 			Destroy (blows, timeforblow);
 
 		}
+		if (col.CompareTag ("Ground")) {
+			Destroy (gameObject);
+		}
 
 
 	}
