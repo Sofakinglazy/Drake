@@ -8,6 +8,7 @@ public class GameMaster : MonoBehaviour {
 
 	public Text pointsText;
 	public Text InputText;
+	public Text EatText;
 
 	void Start(){
 		if (PlayerPrefs.HasKey ("Score")) {
